@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL:'https://gnxtace-technologies-task.onrender.com/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://gnxtace-technologies-task.onrender.com/api',
 });
 
 // Add token to requests
