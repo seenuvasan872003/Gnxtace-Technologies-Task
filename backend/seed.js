@@ -1,43 +1,68 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const mongoose = require('mongoose');
 const Template = require('./models/Template');
 
 const templates = [
   {
-    name: 'SaaS Dashboard Pro',
-    description: 'A premium dashboard template with charts, stats, and dark mode support.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1551288049-bbbda5366a71?w=800&auto=format&fit=crop',
-    category: 'Dashboard'
+    name: 'Nexus AI Platform',
+    description: 'Enterprise-grade AI orchestration dashboard with real-time model monitoring and neural network visualization.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop',
+    category: 'Artificial Intelligence'
   },
   {
-    name: 'E-commerce UI Kit',
-    description: 'Complete set of UI components for modern e-commerce websites.',
+    name: 'Lumina CRM Pro',
+    description: 'Next-generation customer relationship management with predictive lead scoring and automated sales pipelines.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop',
+    category: 'CRM'
+  },
+  {
+    name: 'Quantum Analytics',
+    description: 'Deep data insights platform featuring webgl-powered 3D data mapping and multi-source integration.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1551288049-bbbda5366a71?w=800&auto=format&fit=crop',
+    category: 'Analytics'
+  },
+  {
+    name: 'Vault FinTech Suite',
+    description: 'Ultra-secure banking infrastructure template with encrypted transaction flows and regulatory compliance modules.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop',
+    category: 'Finance'
+  },
+  {
+    name: 'Velocity SaaS Framework',
+    description: 'The ultimate starter kit for high-growth startups. Includes multi-tenant architecture and Stripe integration patterns.',
     thumbnail_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop',
+    category: 'SaaS'
+  },
+  {
+    name: 'Horizon Project Hub',
+    description: 'Agile project management for remote teams. Featuring real-time collaboration tools and dynamic Gantt charts.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop',
+    category: 'Productivity'
+  },
+  {
+    name: 'CyberGuard Monitor',
+    description: 'Real-time threat detection and network security dashboard with automated incident response playbooks.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop',
+    category: 'Security'
+  },
+  {
+    name: 'Evolve E-commerce Kit',
+    description: 'High-conversion storefront template with headless CMS integration and performance-first architecture.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&auto=format&fit=crop',
     category: 'E-commerce'
   },
   {
-    name: 'AI Landing Page',
-    description: 'Futuristic landing page for AI startups with glassmorphism effects.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop',
-    category: 'Landing Page'
-  },
-  {
-    name: 'Social Media Connect',
-    description: 'Clean and minimal social networking template with profile views.',
+    name: 'SocialGraph Connect',
+    description: 'Modern social networking UI with interactive activity feeds, dark mode, and real-time notification systems.',
     thumbnail_url: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop',
     category: 'Social'
   },
   {
-    name: 'Portfolio Elegance',
-    description: 'Showcase your work with this minimalist and elegant portfolio template.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop',
-    category: 'Portfolio'
-  },
-  {
-    name: 'FinTech App Shell',
-    description: 'Robust banking and financial application template with secure UI components.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop',
-    category: 'Finance'
+    name: 'CloudScale Infrastructure',
+    description: 'DevOps-focused monitoring tool for multi-cloud environments. visualize nodes, pods, and server health.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop',
+    category: 'Infrastructure'
   }
 ];
 
