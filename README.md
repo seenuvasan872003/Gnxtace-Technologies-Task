@@ -30,49 +30,52 @@ A full-stack web application that allows users to browse premium SaaS templates,
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/fullstack-intern-task.git
-   cd fullstack-intern-task
+   cd gnxtace-technologies-intern-task
    ```
 
-2. Setup Backend:
+2. Install dependencies (Root, Frontend, and Backend):
    ```bash
-   cd server
+   # Install root dependencies (concurrently)
    npm install
-   # Create a .env file (optional, defaults provided in code)
-   # Run migrations and seeds
-   npx knex migrate:latest
-   npx knex seed:run
-   # Start server
-   npm run dev (if nodemon installed) or node index.js
+
+   # Install frontend dependencies
+   cd frontend && npm install
+
+   # Install backend dependencies
+   cd ../backend && npm install
    ```
 
-3. Setup Frontend:
+3. Run the Project:
+   To run both the frontend and backend servers simultaneously:
    ```bash
-   cd ../client
-   npm install
-   # Start development server
+   # From the root directory
    npm run dev
    ```
 
-### Database Schema
+   Alternatively, you can run them individually:
+   ```bash
+   # Run Frontend only
+   npm run frontend
 
-- **Users**: `id`, `email`, `password`, `name`, `timestamps`
-- **Templates**: `id`, `name`, `description`, `thumbnail_url`, `category`, `timestamps`
-- **Favorites**: `id`, `user_id`, `template_id`, `timestamps`
+   # Run Backend only
+   npm run backend
+   ```
 
 ## Project Structure
 
 ```text
-fullstack-intern-task/
-├── client/              # React frontend
+gnxtace-technologies-intern-task/
+├── frontend/            # React frontend (Vite + TailwindCSS)
 │   ├── src/
-│   │   ├── api/         # Axios instance
+│   │   ├── api/         # Axios instance & API calls
 │   │   ├── components/  # Reusable UI components
 │   │   ├── context/     # Auth state management
 │   │   └── pages/       # Page components
-└── server/              # Express backend
-    ├── db/              # Knex migrations, seeds, and SQLite
-    ├── middleware/      # Auth middleware
-    └── routes/          # API endpoints
+├── backend/             # Node.js + Express backend
+│   ├── models/          # Mongoose schemas
+│   ├── middleware/      # Auth middleware
+│   └── routes/          # API endpoints
+└── package.json         # Root scripts for concurrent execution
 ```
 
 ## Name & Contact Info
