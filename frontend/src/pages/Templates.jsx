@@ -16,6 +16,7 @@ const Templates = () => {
   const [category, setCategory] = useState('All');
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -27,10 +28,12 @@ const Templates = () => {
 
   const fetchTemplates = async () => {
     try {
+      setError(null);
       const res = await api.get('/templates');
       setTemplates(res.data);
     } catch (err) {
       console.error(err);
+      setError('Failed to connect to the template server. Please check if the backend is running and seeded.');
     } finally {
       setLoading(false);
     }
@@ -85,6 +88,18 @@ const Templates = () => {
         categories={categories}
       />
 
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 mb-10 text-center">
+          <p className="text-red-400 font-bold">{error}</p>
+          <button 
+            onClick={fetchTemplates}
+            className="mt-4 text-white/60 hover:text-white transition-colors underline"
+          >
+            Try Again
+          </button>
+        </div>
+      )}
+
       <AnimatePresence mode="popLayout">
         {filteredTemplates.length > 0 ? (
           <motion.div 
@@ -104,7 +119,7 @@ const Templates = () => {
               />
             ))}
           </motion.div>
-        ) : (
+        ) : !error && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
