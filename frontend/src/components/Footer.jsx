@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Command, Code, MessageCircle, Camera, Mail, Shield, Zap, Globe, Cpu } from 'lucide-react';
+import { Command, Code, MessageCircle, Camera, Mail, Shield, Zap, Globe, Cpu, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -19,9 +19,9 @@ const Footer = () => {
       { name: 'API Status', href: '#' },
     ],
     Social: [
-      { name: 'GitHub', href: '#', icon: Code },
-      { name: 'Twitter', href: '#', icon: MessageCircle },
-      { name: 'Instagram', href: '#', icon: Camera },
+      { name: 'Portfolio', href: 'https://seenuvasans.netlify.app/', icon: Globe },
+      { name: 'LinkedIn', href: 'https://www.linkedin.com/in/seenuvasan87/', icon: Linkedin },
+      { name: 'Email', href: 'mailto:seenuvasan87@gmail.com', icon: Mail },
     ],
   };
 
@@ -113,7 +113,7 @@ const Footer = () => {
               <span>Edge Optimized</span>
             </div>
           </div>
-          
+
           <p className="text-[10px] font-black text-white/10 uppercase tracking-widest italic">
             © {currentYear} VAULT PROTOCOL. ALL RIGHTS RESERVED.
           </p>
