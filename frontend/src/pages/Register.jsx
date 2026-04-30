@@ -87,8 +87,8 @@ const Register = () => {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 pl-16 pr-6 text-white focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all font-black placeholder:text-white/5 text-sm sm:text-base uppercase tracking-widest"
-                  placeholder="OPERATIVE NAME"
+                  className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 pl-16 pr-6 text-white focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all font-black placeholder:text-white/5 text-sm sm:text-base tracking-widest"
+                  placeholder="Operative Name"
                 />
               </div>
             </motion.div>
@@ -102,8 +102,8 @@ const Register = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 pl-16 pr-6 text-white focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all font-black placeholder:text-white/5 text-sm sm:text-base uppercase tracking-widest"
-                  placeholder="IDENTITY@VAULT.COM"
+                  className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 pl-16 pr-6 text-white focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all font-black placeholder:text-white/5 text-sm sm:text-base tracking-widest"
+                  placeholder="identity@vault.com"
                 />
               </div>
             </motion.div>
@@ -118,7 +118,7 @@ const Register = () => {
                   minLength={6}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 pl-16 pr-6 text-white focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all font-black placeholder:text-white/5 text-sm sm:text-base uppercase tracking-widest"
+                  className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 pl-16 pr-6 text-white focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all font-black placeholder:text-white/5 text-sm sm:text-base tracking-widest"
                   placeholder="••••••••"
                 />
               </div>

@@ -96,7 +96,7 @@ const Profile = () => {
                 value={profileImage}
                 onChange={(e) => setProfileImage(e.target.value)}
                 placeholder="https://images.unsplash.com/photo-..."
-                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-4 sm:py-5 px-6 text-white font-black uppercase tracking-widest text-xs focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all placeholder:text-white/5"
+                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-4 sm:py-5 px-6 text-white font-black tracking-widest text-xs focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all placeholder:text-white/5"
               />
               <p className="text-[8px] sm:text-[10px] text-white/20 font-black uppercase tracking-widest ml-2 italic">Protocol: Square high-resolution assets recommended</p>
             </div>
@@ -111,7 +111,7 @@ const Profile = () => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 px-8 text-white font-black uppercase tracking-widest text-sm focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all"
+                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 px-8 text-white font-black tracking-widest text-sm focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all"
               />
             </div>
             <div className="space-y-4 opacity-30 cursor-not-allowed">
