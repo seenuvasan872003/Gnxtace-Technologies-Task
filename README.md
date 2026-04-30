@@ -6,8 +6,8 @@ A full-stack web application that allows users to browse premium SaaS templates,
 
 - **Frontend**: React.js (Vite), TailwindCSS, Axios, React Router, Lucide Icons, Framer Motion
 - **Backend**: Node.js, Express.js, JWT, Bcrypt
-- **Database**: SQLite3
-- **ORM / Query Builder**: Knex.js
+- **Database**: MongoDB
+- **ORM / Query Builder**: Mongoose
 
 ## Features
 
@@ -77,5 +77,6 @@ fullstack-intern-task/
 
 ## Name & Contact Info
 
-**Name**: Antigravity
-**Role**: AI Coding Assistant (representing the task completion)
+**Name**: SEENUVASAN
+**Role**: MERN STACK DEVELOPER
+
