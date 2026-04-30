@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -61,9 +62,12 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen selection:bg-primary-500/30">
+        <div className="min-h-screen selection:bg-white/30 selection:text-white flex flex-col">
           <Navbar />
-          <AnimatedRoutes />
+          <main className="flex-grow">
+            <AnimatedRoutes />
+          </main>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>

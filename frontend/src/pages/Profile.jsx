@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, Camera, Save, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { User, Camera, Save, Loader2, CheckCircle2, AlertCircle, Command, ArrowLeft, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Profile = () => {
   const { user, updateProfile } = useAuth();
+  const navigate = useNavigate();
   const [name, setName] = useState(user?.name || '');
   const [profileImage, setProfileImage] = useState(user?.profile_image || '');
   const [loading, setLoading] = useState(false);
@@ -21,72 +23,100 @@ const Profile = () => {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to update profile');
+      setError(err.response?.data?.message || 'Profile synchronization failed.');
     } finally {
       setLoading(false);
     }
   };
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="container mx-auto px-6 pt-40 pb-32 max-w-4xl">
+    <div className="container mx-auto px-4 sm:px-6 pt-32 sm:pt-48 pb-32 max-w-4xl">
+      {/* Back Button */}
+      <motion.button
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        onClick={() => navigate(-1)}
+        className="group flex items-center space-x-3 mb-10 text-white/30 hover:text-white transition-all duration-300"
+      >
+        <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all">
+          <ArrowLeft className="w-5 h-5" />
+        </div>
+        <span className="font-black uppercase tracking-[0.3em] text-[10px] italic">Back to Console</span>
+      </motion.button>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card rounded-[3rem] p-10 md:p-16 relative overflow-hidden"
+        className="glass-card rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-16 relative overflow-hidden bg-black"
       >
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/5 blur-[100px] -z-10" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.05] blur-[100px] -z-10" />
         
         <div className="mb-12">
-          <h1 className="text-5xl font-display font-black text-white mb-4">Edit Profile</h1>
-          <p className="text-white/40 font-medium">Customize your presence in the vault</p>
+          <div className="flex items-center space-x-4 mb-6">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-xl sm:rounded-2xl flex items-center justify-center border border-white/10">
+              <Command className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[8px] sm:text-[10px] text-white/30 font-black uppercase tracking-[0.4em] leading-tight">Identity Management</span>
+              <span className="text-white font-bold text-xs sm:text-sm italic">Core Protocols</span>
+            </div>
+          </div>
+          <h1 className="text-5xl sm:text-6xl font-display font-black text-white mb-4 tracking-tighter uppercase italic leading-none">
+            Member <span className="text-gradient">Profile</span>
+          </h1>
+          <p className="text-white/20 text-xs sm:text-sm font-black uppercase tracking-[0.3em] italic">Customize your presence in the vault</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-12">
+        <form onSubmit={handleSubmit} className="space-y-10 sm:space-y-12">
           {/* Avatar Section */}
-          <div className="flex flex-col md:flex-row items-center gap-12 p-8 bg-white/5 rounded-[2.5rem] border border-white/5">
-            <div className="relative group">
-              <div className="w-40 h-40 rounded-[2.5rem] overflow-hidden bg-slate-800 border-2 border-primary-500/30 group-hover:border-primary-500 transition-all shadow-2xl">
+          <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-12 p-6 sm:p-10 bg-white/[0.02] rounded-[2.5rem] border border-white/5 relative overflow-hidden group">
+            <div className="relative z-10">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-black border border-white/10 group-hover:border-white transition-all duration-700 shadow-2xl relative">
                 {profileImage ? (
-                  <img src={profileImage} alt="Avatar" className="w-full h-full object-cover" />
+                  <img src={profileImage} alt="Avatar" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
-                    <User className="w-16 h-16 text-white/10" />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <User className="w-12 h-12 sm:w-16 sm:h-16 text-white/5" />
                   </div>
                 )}
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-primary-600 rounded-2xl flex items-center justify-center shadow-xl border border-white/10 group-hover:scale-110 transition-transform">
-                <Camera className="w-5 h-5 text-white" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                   <Camera className="w-8 h-8 text-white" />
+                </div>
               </div>
             </div>
 
-            <div className="flex-1 space-y-4 w-full">
-              <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Avatar Source URL</label>
+            <div className="flex-1 space-y-4 w-full relative z-10">
+              <label className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] ml-2 italic">Avatar Source URL</label>
               <input 
                 type="text"
                 value={profileImage}
                 onChange={(e) => setProfileImage(e.target.value)}
                 placeholder="https://images.unsplash.com/photo-..."
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 text-white font-bold focus:outline-none focus:ring-2 focus:ring-primary-500/40 transition-all placeholder:text-white/5"
+                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-4 sm:py-5 px-6 text-white font-black uppercase tracking-widest text-xs focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all placeholder:text-white/5"
               />
-              <p className="text-[10px] text-white/20 font-bold ml-2">Recommended: Use a square high-resolution image URL</p>
+              <p className="text-[8px] sm:text-[10px] text-white/20 font-black uppercase tracking-widest ml-2 italic">Protocol: Square high-resolution assets recommended</p>
             </div>
           </div>
 
           {/* Form Fields */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-3">
-              <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Operative Name</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+            <div className="space-y-4">
+              <label className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] ml-4 italic">Operative Name</label>
               <input 
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 text-white font-bold focus:outline-none focus:ring-2 focus:ring-primary-500/40 transition-all"
+                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 px-8 text-white font-black uppercase tracking-widest text-sm focus:outline-none focus:bg-white/5 focus:border-white/20 transition-all"
               />
             </div>
-            <div className="space-y-3 opacity-50 cursor-not-allowed">
-              <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Email Identity (Locked)</label>
-              <div className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 px-6 text-white/40 font-bold">
+            <div className="space-y-4 opacity-30 cursor-not-allowed">
+              <label className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] ml-4 italic">Email Identity (Locked)</label>
+              <div className="w-full bg-white/[0.02] border border-white/5 rounded-2xl sm:rounded-3xl py-4 sm:py-5 px-8 text-white/40 font-black text-sm uppercase tracking-widest">
                 {user?.email}
               </div>
             </div>
@@ -95,39 +125,50 @@ const Profile = () => {
           <AnimatePresence mode="wait">
             {success && (
               <motion.div 
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 flex items-center space-x-4 text-emerald-400 font-bold text-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center space-x-4 text-white font-black text-xs sm:text-sm uppercase tracking-widest italic"
               >
-                <CheckCircle2 className="w-5 h-5" />
-                <span>Profile synchronization complete. All systems updated.</span>
+                <CheckCircle2 className="w-5 h-5 text-white/40" />
+                <span>Synchronization complete. All nodes updated.</span>
               </motion.div>
             )}
             {error && (
               <motion.div 
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="bg-red-500/10 border border-red-500/20 rounded-2xl p-5 flex items-center space-x-4 text-red-400 font-bold text-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center space-x-4 text-white font-black text-xs sm:text-sm uppercase tracking-widest italic"
               >
-                <AlertCircle className="w-5 h-5" />
+                <AlertCircle className="w-5 h-5 text-white/40" />
                 <span>{error}</span>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="flex justify-end pt-8">
+          <div className="flex flex-col sm:flex-row justify-end items-center gap-4 sm:gap-6 pt-8 relative z-10">
             <motion.button
+              type="button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleCancel}
+              className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 text-white/40 hover:text-white rounded-2xl sm:rounded-3xl font-black text-lg flex items-center justify-center space-x-3 transition-all border border-white/5"
+            >
+              <X className="w-5 h-5" />
+              <span className="uppercase tracking-widest">Cancel</span>
+            </motion.button>
+            <motion.button
+              type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               disabled={loading}
-              className="px-12 py-5 bg-primary-600 hover:bg-primary-500 text-white rounded-2xl font-black text-lg flex items-center space-x-3 transition-all shadow-2xl shadow-primary-900/40 disabled:opacity-50"
+              className="w-full sm:w-auto px-12 py-5 bg-white text-black rounded-2xl sm:rounded-3xl font-black text-lg flex items-center justify-center space-x-4 transition-all shadow-[0_20px_40px_rgba(255,255,255,0.1)] uppercase tracking-widest"
             >
               {loading ? <Loader2 className="w-6 h-6 animate-spin" /> : (
                 <>
-                  <Save className="w-5 h-5" />
-                  <span>Save Changes</span>
+                  <Save className="w-6 h-6" />
+                  <span>Sync Profile</span>
                 </>
               )}
             </motion.button>
